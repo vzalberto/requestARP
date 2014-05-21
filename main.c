@@ -8,7 +8,6 @@
 #include<string.h>
 #include<stdio.h>
 
-#define ETH "eth0"
 #define RESPUESTA "Respuesta: La IP %s pertenece a %02X:%02X:%02X:%02X:%02X:%02X\n"
 
 struct msgARP{
@@ -75,7 +74,7 @@ int main(int argc, char *argv[]){
 	inet_aton(argv[2], msg.destinoIP);
 	strncpy(ip, msg.destinoIP, 4);
 	bzero(&sa, sizeof(sa));
-	strcpy(sa.sa_data, ETH);
+	strcpy(sa.sa_data, argv[1]);
 	
 //Termina llenado del paquete
 
@@ -86,7 +85,7 @@ int main(int argc, char *argv[]){
 			perror("ERROR al enviar");
 			return -1;
 		}
-	printf("\nPaquete enviado\n");
+	printf("\nWho is %s?\n", argv[2]);
 
 //Recepcion
 
